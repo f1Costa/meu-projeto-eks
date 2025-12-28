@@ -2,9 +2,9 @@
 
 ## ✅ O que foi implementado
 
-### 1. Permissões IAM Completas
+### 1. Permissões IAM Completas e Abrangentes
 
-A política IAM foi atualizada com **TODAS** as permissões necessárias para evitar loops de erros:
+A política IAM foi atualizada com **TODAS** as permissões necessárias para EKS, incluindo permissões preventivas para evitar loops de erros:
 
 #### EC2 - Network ACLs (NOVO - Resolve erro atual)
 - `ec2:CreateNetworkAcl`
@@ -44,6 +44,43 @@ A política IAM foi atualizada com **TODAS** as permissões necessárias para ev
 
 #### KMS
 - Todas as permissões para gerenciar chaves de criptografia
+- Permissões de criptografia/descriptografia (Decrypt, Encrypt, GenerateDataKey, etc.)
+- Permissões de grants (CreateGrant, ListGrants, RevokeGrant)
+
+#### EKS - Permissões Completas (NOVO)
+- **Cluster Management**: CreateCluster, DeleteCluster, DescribeCluster, UpdateClusterConfig, UpdateClusterVersion
+- **Add-ons**: CreateAddon, DeleteAddon, UpdateAddon, ListAddons, DescribeAddon, DescribeAddonVersions
+- **Identity Provider**: AssociateIdentityProviderConfig, DisassociateIdentityProviderConfig, DescribeIdentityProviderConfig
+- **Access Management**: CreateAccessEntry, DeleteAccessEntry, DescribeAccessEntry, ListAccessEntries, AssociateAccessPolicy
+- **Fargate Profiles**: CreateFargateProfile, DeleteFargateProfile, DescribeFargateProfile, ListFargateProfiles
+- **Updates**: DescribeUpdate, ListUpdates, UpdateNodegroupVersion
+- **Tags**: TagResource, UntagResource, ListTagsForResource
+
+#### IAM - Service-Linked Roles (NOVO - Resolve erro atual)
+- `iam:CreateServiceLinkedRole` ⭐ **Resolve o erro atual**
+- `iam:DeleteServiceLinkedRole`
+- `iam:GetServiceLinkedRoleDeletionStatus`
+- Permissões adicionais para gerenciar Service-Linked Roles
+
+#### ELB - Permissões Expandidas (NOVO)
+- Todas as permissões de Load Balancers (Create, Delete, Modify, Describe)
+- Permissões de Target Groups completas
+- Permissões de Listeners e Rules
+- Permissões de Tags e Certificados
+- Permissões de Attributes e Security Groups
+
+#### EC2 - Instance Management (NOVO)
+- Permissões para gerenciar instâncias EC2 (RunInstances, TerminateInstances, etc.)
+- Permissões de Volumes EBS (CreateVolume, DeleteVolume, AttachVolume, etc.)
+- Permissões de Snapshots e Images
+
+#### Auto Scaling (NOVO)
+- Todas as permissões para gerenciar Auto Scaling Groups
+- Permissões de Launch Configurations
+- Permissões de Scheduled Actions
+
+#### ECR (NOVO)
+- Permissões para acessar Amazon ECR (GetAuthorizationToken, BatchGetImage, etc.)
 
 ### 2. Correção do Log Group Existente
 
