@@ -5,14 +5,17 @@ module "eks" {
   cluster_name    = "eks-devops"
   cluster_version = "1.30"
 
-  vpc_id  = module.vpc.vpc_id
+  # 👇 ESSA É A LINHA QUE RESOLVE SEU ERRO DO apply
+  manage_aws_auth_configmap = false
+
+  vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
   eks_managed_node_groups = {
     default = {
-      desired_size = 3
-      max_size     = 3
-      min_size     = 3
+      desired_size  = 3
+      max_size      = 3
+      min_size      = 3
       instance_types = ["t3.medium"]
     }
   }
