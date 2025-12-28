@@ -47,6 +47,19 @@ jobs:
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v3
 
+      # Limpar log group existente se houver (evita erro de recurso já existente)
+      - name: Limpar CloudWatch Log Group existente
+        run: |
+          LOG_GROUP="/aws/eks/eks-devops/cluster"
+          if aws logs describe-log-groups --log-group-name-prefix "$LOG_GROUP" --query "logGroups[?logGroupName=='$LOG_GROUP']" --output text | grep -q "$LOG_GROUP"; then
+            echo "Deletando log group existente: $LOG_GROUP"
+            aws logs delete-log-group --log-group-name "$LOG_GROUP" || true
+            echo "Aguardando 5 segundos..."
+            sleep 5
+          else
+            echo "Log group não existe, continuando..."
+          fi
+
       # Terraform Init
       - name: Terraform Init
         working-directory: terraform
