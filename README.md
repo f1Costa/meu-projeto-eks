@@ -14,9 +14,10 @@ Projeto para deploy de aplicação Python em cluster EKS na AWS usando Terraform
 As permissões IAM necessárias estão configuradas na role `GitHubActionsEKSRole` e incluem:
 - CloudWatch Logs
 - IAM (inline e managed policies)
-- EC2 (incluindo tags)
+- EC2 (incluindo tags e modificação de atributos VPC)
 - EKS
 - ELB
+- KMS (para criptografia do cluster)
 
 ## Deploy
 
