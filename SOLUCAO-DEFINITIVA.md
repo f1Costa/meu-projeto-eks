@@ -6,7 +6,17 @@
 
 A política IAM foi atualizada com **TODAS** as permissões necessárias para EKS, incluindo permissões preventivas para evitar loops de erros:
 
-#### EC2 - Network ACLs (NOVO - Resolve erro atual)
+#### EC2 - Launch Templates (NOVO - Resolve erro atual)
+- `ec2:CreateLaunchTemplate` ⭐ **Resolve erro atual de Launch Template**
+- `ec2:DeleteLaunchTemplate`
+- `ec2:DescribeLaunchTemplates`
+- `ec2:DescribeLaunchTemplateVersions`
+- `ec2:CreateLaunchTemplateVersion`
+- `ec2:DeleteLaunchTemplateVersions`
+- `ec2:ModifyLaunchTemplate`
+- `ec2:GetLaunchTemplateData`
+
+#### EC2 - Network ACLs
 - `ec2:CreateNetworkAcl`
 - `ec2:DeleteNetworkAcl`
 - `ec2:CreateNetworkAclEntry`
@@ -56,11 +66,18 @@ A política IAM foi atualizada com **TODAS** as permissões necessárias para EK
 - **Updates**: DescribeUpdate, ListUpdates, UpdateNodegroupVersion
 - **Tags**: TagResource, UntagResource, ListTagsForResource
 
-#### IAM - Service-Linked Roles (NOVO - Resolve erro atual)
-- `iam:CreateServiceLinkedRole` ⭐ **Resolve o erro atual**
+#### IAM - Service-Linked Roles e OIDC Providers (NOVO - Resolve erros atuais)
+- `iam:CreateServiceLinkedRole` ⭐ **Resolve erro de Service-Linked Role**
 - `iam:DeleteServiceLinkedRole`
 - `iam:GetServiceLinkedRoleDeletionStatus`
-- Permissões adicionais para gerenciar Service-Linked Roles
+- `iam:CreateOpenIDConnectProvider` ⭐ **Resolve erro atual de OIDC Provider**
+- `iam:DeleteOpenIDConnectProvider`
+- `iam:GetOpenIDConnectProvider`
+- `iam:ListOpenIDConnectProviders`
+- `iam:AddClientIDToOpenIDConnectProvider`
+- `iam:RemoveClientIDFromOpenIDConnectProvider`
+- `iam:UpdateOpenIDConnectProviderThumbprint`
+- Permissões de tags para OIDC Providers
 
 #### ELB - Permissões Expandidas (NOVO)
 - Todas as permissões de Load Balancers (Create, Delete, Modify, Describe)
