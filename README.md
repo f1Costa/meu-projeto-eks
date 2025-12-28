@@ -23,3 +23,7 @@ As permissões IAM necessárias estão configuradas na role `GitHubActionsEKSRol
 
 O deploy é feito automaticamente via GitHub Actions quando há push para a branch `main`.
 
+## Status
+
+Pipeline configurado com todas as permissões IAM necessárias.
+
