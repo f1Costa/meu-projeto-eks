@@ -25,5 +25,8 @@ O deploy é feito automaticamente via GitHub Actions quando há push para a bran
 
 ## Status
 
-Pipeline configurado com todas as permissões IAM necessárias.
+Pipeline configurado com todas as permissões IAM necessárias, incluindo:
+- IAM managed policies (CreatePolicy, DeletePolicy, etc.)
+- EC2 EIP e Security Group Rules
+- CloudWatch Logs completo
 
