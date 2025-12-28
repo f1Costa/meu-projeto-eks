@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
 
-# Necessário para permitir OIDC
+# Necessário para OIDC
 permissions:
   id-token: write
   contents: read
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      # Autenticação via OIDC (SEM ACCESS KEYS)
+      # Autenticação AWS via OIDC (SEM ACCESS KEYS)
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -28,20 +28,20 @@ jobs:
       - name: Login no Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: felipec23
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Buildx é obrigatório no GitHub Actions
+      # Buildx obrigatório
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Build com contexto explícito (solução 2)
+      # Build usando Dockerfile da raiz + contexto explícito
       - name: Build da imagem Docker
-        run: docker buildx build --load -t ${{ secrets.DOCKERHUB_USERNAME }}/api-eks:latest --file Dockerfile .
+        run: docker buildx build --load -t felipec23/api-eks:latest --file Dockerfile .
 
-      # Push da imagem para o Docker Hub
+      # Push da imagem
       - name: Push imagem Docker
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/api-eks:latest
+        run: docker push felipec23/api-eks:latest
 
       # Instalar Terraform
       - name: Instalar Terraform
@@ -52,18 +52,18 @@ jobs:
         working-directory: terraform
         run: terraform init
 
-      # Terraform Apply para criar EKS + VPC
+      # Terraform Apply para criar EKS
       - name: Terraform Apply
         working-directory: terraform
         run: terraform apply -auto-approve
 
-      # Configurar kubectl para acessar o cluster
+      # Configurar kubectl
       - name: Configurar kubectl
         run: |
           aws eks update-kubeconfig --region us-east-1 --name eks-devops
 
-      # Aplicar manifestos no Kubernetes
-      - name: Deploy k8s
+      # Deploy para o Kubernetes
+      - name: Deploy no Kubernetes
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
