@@ -5,8 +5,17 @@ module "eks" {
   cluster_name    = "eks-devops"
   cluster_version = "1.30"
 
-  # 👇 ESSA É A LINHA QUE RESOLVE SEU ERRO DO apply
-  manage_aws_auth_configmap = false
+  # Habilitar gerenciamento do aws-auth para adicionar usuários
+  manage_aws_auth_configmap = true
+
+  # Adicionar usuário local ao cluster
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::925445554210:user/cloudOps"
+      username = "cloudOps"
+      groups   = ["system:masters"]
+    }
+  ]
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
