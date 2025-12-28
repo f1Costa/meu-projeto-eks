@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: api
-          image: DOCKER_HUB_USER/api-eks:latest
+          image: felipec23/api-eks:latest
           ports:
             - containerPort: 5000
