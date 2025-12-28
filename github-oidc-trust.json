@@ -12,7 +12,7 @@
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:SEU_REPO:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub": "repo:f1Costa/meu-projeto-eks:ref:refs/heads/main"
         }
       }
     }
