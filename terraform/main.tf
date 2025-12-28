@@ -16,7 +16,9 @@ module "eks" {
       desired_size  = 3
       max_size      = 3
       min_size      = 3
-      instance_types = ["t3.medium"]
+      # t3.small é Free Tier elegível e adequado para EKS
+      # Se você quiser usar t3.medium, precisa remover a restrição de Free Tier na conta AWS
+      instance_types = ["t3.small"]
     }
   }
 }
