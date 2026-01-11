@@ -15,6 +15,8 @@ eks-terraform-policy.json
 github-oidc-trust.json
 *.secret
 *.secrets
+github-oidc-trust.json
+fix-kms-policy.sh
 
 # Credenciais AWS (caso alguém salve erroneamente)
 .aws/

@@ -15,6 +15,13 @@
           "token.actions.githubusercontent.com:sub": "repo:f1Costa/meu-projeto-eks:ref:refs/heads/main"
         }
       }
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::925445554210:user/cloudOps"
+      },
+      "Action": "sts:AssumeRole"
     }
   ]
 }

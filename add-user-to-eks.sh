@@ -4,7 +4,7 @@
 
 CLUSTER_NAME="eks-devops"
 REGION="us-east-1"
-USER_ARN="arn:aws:iam::925445554210:user/cloudOps"
+USER_ARN=$USER_ARN
 
 echo "🔐 Adicionando usuário ao aws-auth ConfigMap..."
 echo "Usuário: $USER_ARN"
