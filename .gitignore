@@ -18,6 +18,11 @@ github-oidc-trust.json
 github-oidc-trust.json
 fix-kms-policy.sh
 
+apply-iam-policy.sh
+add-user-to-eks.sh
+connect-eks.sh
+fix-log-group.sh
+
 # Credenciais AWS (caso alguém salve erroneamente)
 .aws/
 *.aws
