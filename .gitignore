@@ -23,6 +23,22 @@ add-user-to-eks.sh
 connect-eks.sh
 fix-log-group.sh
 
+# Policies JSON temporárias / com dados sensíveis
+terraform/kms-allow-actions.json
+terraform/kms-destroy-policy.json
+terraform/kms-new-policy.json
+terraform/kms-policy.json
+terraform/kms-current.json
+terraform/current-kms-policy.json
+terraform/new-trust-policy.json
+terraform/trust-policy.json
+terraform/ec2-full-temp.json
+terraform/check_vpc.sh
+
+# Documentação local
+ACESSO-LOCAL.md
+SOLUCAO-DEFINITIVA.md
+
 # Credenciais AWS (caso alguém salve erroneamente)
 .aws/
 *.aws
